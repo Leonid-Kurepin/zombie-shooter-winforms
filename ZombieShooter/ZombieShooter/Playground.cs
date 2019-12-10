@@ -109,6 +109,44 @@ namespace ZombieShooter
 
         private void gameEngine(object sender, EventArgs e)
         {
+            if (playerHealth > 1)
+            {
+                progressBar1.Value = Convert.ToInt32(playerHealth);
+            }
+            else
+            {
+                player.Image = Properties.Resources.dead;
+                timer1.Stop();
+                gameOver = true;
+            }
+
+            labelAmmo.Text = "Ammo:  " + ammo;
+            labelKills.Text = "Kills:  " + score;
+
+            if (playerHealth < 20)
+            {
+                progressBar1.ForeColor = Color.Red;
+            }
+
+            if (goLeft && (player.Left) > 0)
+            {
+                player.Left -= speed;
+            }
+
+            if (goRight && player.Right < this.Width)
+            {
+                player.Left += speed;
+            }
+
+            if (goUp && player.Top > 0)
+            {
+                player.Top -= speed;
+            }
+
+            if (goDown && player.Bottom < this.Height)
+            {
+                player.Top += speed;
+            }
 
         }
 
