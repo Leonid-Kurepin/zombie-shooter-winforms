@@ -68,7 +68,43 @@ namespace ZombieShooter
 
         private void keyisup(object sender, KeyEventArgs e)
         {
+            if (gameOver)
+            {
+                return;
+            }
 
+            if (e.KeyCode == Keys.Left)
+            {
+                goLeft = false;
+            }
+
+            if (e.KeyCode == Keys.Right)
+            {
+                goRight = false;
+            }
+
+            if (e.KeyCode == Keys.Up)
+            {
+                goUp = false;
+            }
+
+            if (e.KeyCode == Keys.Down)
+            {
+                goDown = false;
+            }
+
+            // shoot by press the Space button
+            if (e.KeyCode == Keys.Space && ammo > 0)
+            {
+                ammo--;
+
+                Shoot(facing);
+
+                if (ammo < 1)
+                {
+                    DropAmmo();
+                }
+            }
         }
 
         private void gameEngine(object sender, EventArgs e)
