@@ -148,6 +148,34 @@ namespace ZombieShooter
                 player.Top += speed;
             }
 
+            foreach (Control control in this.Controls)
+            {
+                // Ammo
+                if (control is PictureBox && control.Tag.ToString().Equals("ammo"))
+                {
+                   if(((PictureBox)control).Bounds.IntersectsWith(player.Bounds))
+                   {
+                       this.Controls.Remove(control);
+                       control.Dispose();
+
+                       ammo+= 5;
+                   }
+                }
+
+                // Bullet
+                if (control is PictureBox && control.Tag.ToString().Equals("bullet"))
+                {
+                    //Out of screen
+                    if (((PictureBox)control).Left < 1 ||
+                        ((PictureBox)control).Right > this.Width ||
+                        ((PictureBox)control).Top < 100 ||
+                        ((PictureBox)control).Bottom > this.Height)
+                    {
+                       this.Controls.Remove(control);
+                       control.Dispose();
+                    }
+                }
+            }
         }
 
         private void DropAmmo()
