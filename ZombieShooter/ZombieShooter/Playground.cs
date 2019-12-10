@@ -12,6 +12,19 @@ namespace ZombieShooter
 {
     public partial class Playground : Form
     {
+        private bool goUp;
+        private bool goDown;
+        private bool goRight;
+        private bool goLeft;
+        private string facing = "up";
+        private double playerHealth = 100;
+        private int speed = 10;
+        private int ammo = 10;
+        private int zombieSpeed = 3;
+        private int score = 0;
+        private bool gameOver = false;
+        Random rnd = new Random();
+
         public Playground()
         {
             InitializeComponent();
