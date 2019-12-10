@@ -31,5 +31,19 @@ namespace ZombieShooter
         {
 
         }
+
+        private void DropAmmo()
+        {
+
+        }
+
+        private void Shoot(string direction)
+        {
+
+        }
+        private void MakeZombie()
+        {
+
+        }
     }
 }
