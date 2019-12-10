@@ -148,31 +148,75 @@ namespace ZombieShooter
                 player.Top += speed;
             }
 
-            foreach (Control control in this.Controls)
+            foreach (Control c in this.Controls)
             {
-                // Ammo
-                if (control is PictureBox && control.Tag.ToString().Equals("ammo"))
+                if (!(c is PictureBox) || c.Tag == null)
                 {
-                   if(((PictureBox)control).Bounds.IntersectsWith(player.Bounds))
-                   {
-                       this.Controls.Remove(control);
-                       control.Dispose();
+                    continue;
+                }
 
-                       ammo+= 5;
-                   }
+                var pictureBox = (PictureBox) c;
+
+                // Ammo
+                if (pictureBox.Tag.ToString().Equals("ammo"))
+                {
+                    if ((pictureBox).Bounds.IntersectsWith(player.Bounds))
+                    {
+                        this.Controls.Remove(pictureBox);
+                        pictureBox.Dispose();
+
+                        ammo += 5;
+                    }
                 }
 
                 // Bullet
-                if (control is PictureBox && control.Tag.ToString().Equals("bullet"))
+                if (pictureBox.Tag.ToString().Equals("bullet"))
                 {
                     //Out of screen
-                    if (((PictureBox)control).Left < 1 ||
-                        ((PictureBox)control).Right > this.Width ||
-                        ((PictureBox)control).Top < 100 ||
-                        ((PictureBox)control).Bottom > this.Height)
+                    if (pictureBox.Left < 1 ||
+                        pictureBox.Right > this.Width ||
+                        pictureBox.Top < 100 ||
+                        pictureBox.Bottom > this.Height)
                     {
-                       this.Controls.Remove(control);
-                       control.Dispose();
+                        this.Controls.Remove(pictureBox);
+                        pictureBox.Dispose();
+                    }
+                }
+
+                //Zombie
+                if (pictureBox.Tag.ToString().Equals("zombie"))
+                {
+                    if (pictureBox.Bounds.IntersectsWith(player.Bounds))
+                    {
+                        playerHealth -= 1;
+                    }
+
+                    // Go left
+                    if (pictureBox.Left > player.Left)
+                    {
+                        pictureBox.Left -= zombieSpeed;
+                        pictureBox.Image = Properties.Resources.zleft;
+                    }
+
+                    // Go right
+                    if (pictureBox.Left < player.Left)
+                    {
+                        pictureBox.Left += zombieSpeed;
+                        pictureBox.Image = Properties.Resources.zright;
+                    }
+
+                    // Go up
+                    if (pictureBox.Top > player.Top)
+                    {
+                        pictureBox.Top -= zombieSpeed;
+                        pictureBox.Image = Properties.Resources.zup;
+                    }
+
+                    // Go down
+                    if (pictureBox.Top < player.Top)
+                    {
+                        pictureBox.Top += zombieSpeed;
+                        pictureBox.Image = Properties.Resources.zdown;
                     }
                 }
             }
