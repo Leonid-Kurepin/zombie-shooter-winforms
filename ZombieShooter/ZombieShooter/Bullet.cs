@@ -11,12 +11,14 @@ namespace ZombieShooter
     class Bullet
     {
         public string Direction { get; set; }
-        public int Speed { get; set; } = 2000;
+        public int Speed { get; set; } = 20;
         public int Left { get; set; }
         public int Top { get; set; }
 
         private readonly PictureBox _bulletPictureBox;
         private readonly Timer _timer;
+        private readonly int _timerTick;
+
 
         public Bullet(Form form, string direction, int left, int top)
         {
@@ -24,17 +26,18 @@ namespace ZombieShooter
 
             _bulletPictureBox = new PictureBox();
             _timer = new Timer();
+            _timerTick = 20;
 
             _bulletPictureBox.BackColor = Color.White;
             _bulletPictureBox.Size = new Size(5, 5);
             _bulletPictureBox.Tag = "bullet";
-            _bulletPictureBox.Left = Left;
-            _bulletPictureBox.Top = Top;
+            _bulletPictureBox.Left = left;
+            _bulletPictureBox.Top = top;
             _bulletPictureBox.BringToFront();
 
             form.Controls.Add(_bulletPictureBox);
 
-            _timer.Interval = Speed;
+            _timer.Interval = _timerTick;
             _timer.Tick += new EventHandler(timer_Tick);
             _timer.Start();
         }
