@@ -255,16 +255,29 @@ namespace ZombieShooter
             ammo.Left = rnd.Next(10, this.Width);
             ammo.Top = rnd.Next(110, this.Height);
             ammo.Tag = "ammo";
+
+            this.Controls.Add(ammo);
             ammo.BringToFront();
             player.BringToFront();
         }
 
         private void Shoot(string direction)
         {
+            var left = player.Left + (player.Width / 2);
+            var top = player.Top + (player.Width / 2);
+            var bullet = new Bullet(this, direction, left, top);
         }
         private void MakeZombie()
         {
+            PictureBox zombie = new PictureBox();
+            zombie.Tag = "zombie";
+            zombie.Image = Properties.Resources.zdown;
+            zombie.Left = rnd.Next(0, this.Width);
+            zombie.Top = rnd.Next(0, this.Height);
+            zombie.SizeMode = PictureBoxSizeMode.AutoSize;
 
+            this.Controls.Add(zombie);
+            player.BringToFront();
         }
     }
 }

@@ -11,14 +11,14 @@ namespace ZombieShooter
     class Bullet
     {
         public string Direction { get; set; }
-        public int Speed { get; set; } = 20;
+        public int Speed { get; set; } = 2000;
         public int Left { get; set; }
         public int Top { get; set; }
 
         private readonly PictureBox _bulletPictureBox;
         private readonly Timer _timer;
 
-        public Bullet(Form form, string direction)
+        public Bullet(Form form, string direction, int left, int top)
         {
             Direction = direction;
 
@@ -60,6 +60,9 @@ namespace ZombieShooter
             {
                 _bulletPictureBox.Top += Speed;
             }
+
+            //_timer.Stop();
+            //_timer.Dispose();
         }
     }
 }
