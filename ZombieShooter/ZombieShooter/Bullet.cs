@@ -12,8 +12,6 @@ namespace ZombieShooter
     {
         public string Direction { get; set; }
         public int Speed { get; set; } = 20;
-        public int Left { get; set; }
-        public int Top { get; set; }
 
         private readonly PictureBox _bulletPictureBox;
         private readonly Timer _timer;

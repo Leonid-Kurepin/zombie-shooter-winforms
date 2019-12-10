@@ -32,7 +32,7 @@
             this.labelAmmo = new System.Windows.Forms.Label();
             this.labelKills = new System.Windows.Forms.Label();
             this.labelHealth = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.progressBarHealth = new System.Windows.Forms.ProgressBar();
             this.pictureBoxZombie1 = new System.Windows.Forms.PictureBox();
             this.player = new System.Windows.Forms.PictureBox();
             this.pictureBoxZombie2 = new System.Windows.Forms.PictureBox();
@@ -80,12 +80,12 @@
             this.labelHealth.TabIndex = 2;
             this.labelHealth.Text = "Health";
             // 
-            // progressBar1
+            // progressBarHealth
             // 
-            this.progressBar1.Location = new System.Drawing.Point(650, 61);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(244, 32);
-            this.progressBar1.TabIndex = 3;
+            this.progressBarHealth.Location = new System.Drawing.Point(650, 61);
+            this.progressBarHealth.Name = "progressBarHealth";
+            this.progressBarHealth.Size = new System.Drawing.Size(244, 32);
+            this.progressBarHealth.TabIndex = 3;
             // 
             // pictureBoxZombie1
             // 
@@ -101,17 +101,18 @@
             // player
             // 
             this.player.Image = global::ZombieShooter.Properties.Resources.up;
-            this.player.Location = new System.Drawing.Point(385, 294);
+            this.player.Location = new System.Drawing.Point(430, 266);
             this.player.Name = "player";
             this.player.Size = new System.Drawing.Size(71, 100);
             this.player.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.player.TabIndex = 5;
             this.player.TabStop = false;
+            this.player.Tag = "player";
             // 
             // pictureBoxZombie2
             // 
             this.pictureBoxZombie2.Image = global::ZombieShooter.Properties.Resources.zdown;
-            this.pictureBoxZombie2.Location = new System.Drawing.Point(650, 191);
+            this.pictureBoxZombie2.Location = new System.Drawing.Point(760, 192);
             this.pictureBoxZombie2.Name = "pictureBoxZombie2";
             this.pictureBoxZombie2.Size = new System.Drawing.Size(71, 71);
             this.pictureBoxZombie2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -122,7 +123,7 @@
             // pictureBoxZombie3
             // 
             this.pictureBoxZombie3.Image = global::ZombieShooter.Properties.Resources.zup;
-            this.pictureBoxZombie3.Location = new System.Drawing.Point(385, 516);
+            this.pictureBoxZombie3.Location = new System.Drawing.Point(430, 514);
             this.pictureBoxZombie3.Name = "pictureBoxZombie3";
             this.pictureBoxZombie3.Size = new System.Drawing.Size(71, 71);
             this.pictureBoxZombie3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -134,7 +135,7 @@
             // 
             this.timer1.Enabled = true;
             this.timer1.Interval = 20;
-            this.timer1.Tick += new System.EventHandler(this.gameEngine);
+            this.timer1.Tick += new System.EventHandler(this.GameEngine);
             // 
             // Playground
             // 
@@ -146,17 +147,17 @@
             this.Controls.Add(this.pictureBoxZombie2);
             this.Controls.Add(this.player);
             this.Controls.Add(this.pictureBoxZombie1);
-            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.progressBarHealth);
             this.Controls.Add(this.labelHealth);
             this.Controls.Add(this.labelKills);
             this.Controls.Add(this.labelAmmo);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Playground";
             this.Tag = "zombie";
             this.Text = "Zombie Shooter";
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.keyisdown);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.keyisup);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyIsDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyIsUp);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxZombie1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.player)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxZombie2)).EndInit();
@@ -171,7 +172,7 @@
         private System.Windows.Forms.Label labelAmmo;
         private System.Windows.Forms.Label labelKills;
         private System.Windows.Forms.Label labelHealth;
-        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ProgressBar progressBarHealth;
         private System.Windows.Forms.PictureBox pictureBoxZombie1;
         private System.Windows.Forms.PictureBox player;
         private System.Windows.Forms.PictureBox pictureBoxZombie2;
