@@ -261,7 +261,6 @@ namespace ZombieShooter
 
         private void Shoot(string direction)
         {
-
         }
         private void MakeZombie()
         {
