@@ -218,6 +218,31 @@ namespace ZombieShooter
                         pictureBox.Top += zombieSpeed;
                         pictureBox.Image = Properties.Resources.zdown;
                     }
+
+                    foreach (Control bulletControl in this.Controls)
+                    {
+                        if (!(bulletControl is PictureBox) || 
+                            bulletControl.Tag == null ||
+                            !pictureBox.Tag.ToString().Equals("bullet"))
+                        {
+                            continue;
+                        }
+
+                        var bullet = (PictureBox) bulletControl;
+                        var zombie = pictureBox;
+
+                        // Bullet hits zombie
+                        if (zombie.Bounds.IntersectsWith(bullet.Bounds))
+                        {
+                            this.Controls.Remove(bullet);
+                            this.Controls.Remove(zombie);
+                            bullet.Dispose();
+                            zombie.Dispose();
+
+                            score++;
+                            MakeZombie();
+                        }
+                    }
                 }
             }
         }
