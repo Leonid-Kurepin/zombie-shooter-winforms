@@ -249,7 +249,14 @@ namespace ZombieShooter
 
         private void DropAmmo()
         {
-
+            var ammo = new PictureBox();
+            ammo.Image = Properties.Resources.ammo_Image;
+            ammo.SizeMode = PictureBoxSizeMode.AutoSize;
+            ammo.Left = rnd.Next(10, this.Width);
+            ammo.Top = rnd.Next(110, this.Height);
+            ammo.Tag = "ammo";
+            ammo.BringToFront();
+            player.BringToFront();
         }
 
         private void Shoot(string direction)
