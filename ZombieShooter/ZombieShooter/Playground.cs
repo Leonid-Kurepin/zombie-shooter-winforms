@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ZombieShooter
@@ -24,7 +18,6 @@ namespace ZombieShooter
         private int score = 0;
         private bool gameOver = false;
         Random rnd = new Random();
-
         public Playground()
         {
             InitializeComponent();
@@ -138,7 +131,7 @@ namespace ZombieShooter
                 player.Left += speed;
             }
 
-            if (goUp && player.Top > 0)
+            if (goUp && player.Top > 100)
             {
                 player.Top -= speed;
             }
@@ -218,15 +211,16 @@ namespace ZombieShooter
                         pictureBox.Top += zombieSpeed;
                         pictureBox.Image = Properties.Resources.zdown;
                     }
-
+                  
                     foreach (Control bulletControl in this.Controls)
                     {
                         if (!(bulletControl is PictureBox) || 
                             bulletControl.Tag == null ||
-                            !pictureBox.Tag.ToString().Equals("bullet"))
+                            !bulletControl.Tag.ToString().Equals("bullet"))
                         {
                             continue;
                         }
+
 
                         var bullet = (PictureBox) bulletControl;
                         var zombie = pictureBox;
@@ -252,8 +246,8 @@ namespace ZombieShooter
             var ammo = new PictureBox();
             ammo.Image = Properties.Resources.ammo_Image;
             ammo.SizeMode = PictureBoxSizeMode.AutoSize;
-            ammo.Left = rnd.Next(10, this.Width);
-            ammo.Top = rnd.Next(110, this.Height);
+            ammo.Left = rnd.Next(10, this.Width - 50);
+            ammo.Top = rnd.Next(110, this.Height - 50);
             ammo.Tag = "ammo";
 
             this.Controls.Add(ammo);
