@@ -16,5 +16,15 @@ namespace ZombieShooter
         {
             InitializeComponent();
         }
+
+        private void keyisdown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void keyisup(object sender, KeyEventArgs e)
+        {
+
+        }
     }
 }

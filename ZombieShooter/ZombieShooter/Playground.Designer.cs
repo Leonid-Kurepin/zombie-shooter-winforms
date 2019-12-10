@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.labelAmmo = new System.Windows.Forms.Label();
             this.labelKills = new System.Windows.Forms.Label();
             this.labelHealth = new System.Windows.Forms.Label();
@@ -36,6 +37,7 @@
             this.player = new System.Windows.Forms.PictureBox();
             this.pictureBoxZombie2 = new System.Windows.Forms.PictureBox();
             this.pictureBoxZombie3 = new System.Windows.Forms.PictureBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxZombie1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxZombie2)).BeginInit();
@@ -128,6 +130,11 @@
             this.pictureBoxZombie3.TabStop = false;
             this.pictureBoxZombie3.Tag = "zombie";
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 20;
+            // 
             // Playground
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 31F);
@@ -147,6 +154,8 @@
             this.Name = "Playground";
             this.Tag = "zombie";
             this.Text = "Zombie Shooter";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.keyisdown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.keyisup);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxZombie1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.player)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxZombie2)).EndInit();
@@ -166,6 +175,7 @@
         private System.Windows.Forms.PictureBox player;
         private System.Windows.Forms.PictureBox pictureBoxZombie2;
         private System.Windows.Forms.PictureBox pictureBoxZombie3;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
